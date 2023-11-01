@@ -115,8 +115,9 @@ plt.show()
 cor_target = abs(cor["Survived"])
 relevant_features = cor_target[cor_target>0.5]
 relevant_features
-
+```
 # BACKWARD ELIMINATION:
+```
 cols = list(X.columns)
 pmax = 1
 while (len(cols)>0):
@@ -144,8 +145,9 @@ X_rfe = rfe.fit_transform(X,y)
 model.fit(X_rfe,y)
 print(rfe.support_)
 print(rfe.ranking_)
-
+```
 # OPTIMUM NUMBER OF FEATURES THAT HAVE HIGH ACCURACY:
+```
 nof_list=np.arange(1,6)            
 high_score=0
 nof=0           
@@ -164,8 +166,9 @@ for n in range(len(nof_list)):
         nof = nof_list[n]
 print("Optimum number of features: %d" %nof)
 print("Score with %d features: %f" % (nof, high_score))
-
+```
 # FINAL SET OF FEATURE:
+```
 cols = list(X.columns)
 model = LinearRegression()
 rfe = RFE(model, step=2)             
@@ -174,8 +177,9 @@ model.fit(X_rfe,y)
 temp = pd.Series(rfe.support_,index = cols)
 selected_features_rfe = temp[temp==True].index
 print(selected_features_rfe)
-
+```
 # EMBEDDED METHOD:
+```
 reg = LassoCV()
 reg.fit(X, y)
 print("Best alpha using built-in LassoCV: %f" % reg.alpha_)
@@ -188,7 +192,7 @@ matplotlib.rcParams['figure.figsize'] = (5.0, 5.0)
 imp_coef.plot(kind = "barh")
 plt.title("Feature importance using Lasso Model")
 plt.show()
-
+```
 # OUPUT
 ## DATA PREPROCESSING BEFORE FEATURE SELECTION:
 ![image](https://github.com/harinidq/Ex-07-Feature-Selection/assets/113497680/00c20afa-f66f-4148-8d00-6a870ae037fc)
